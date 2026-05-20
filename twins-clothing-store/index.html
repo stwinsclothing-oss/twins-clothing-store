@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="TWINS Clothing Store - mode masculine premium au Maroc.">
+  <title>TWINS Clothing Store</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); }
+  :root {
+    --black: #0a0a0a; --dark: #111111; --card: #161616;
+    --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.2);
+    --text: #ffffff; --muted: rgba(255,255,255,0.45); --gold: #c9a96e;
+  }
+  .site-wrapper { background: var(--black); min-height: 100vh; overflow-x: hidden; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #fff; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,10,10,0.97); backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+    padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px;
+  }
+  .nav-logo-wrap { display: flex; align-items: center; gap: 10px; }
+  .nav-logo-img { height: 36px; width: auto; }
+  .nav-logo-text { font-size: 13px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text); line-height: 1.1; }
+  .nav-logo-sub { font-size: 9px; letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase; font-weight: 400; }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); cursor: pointer; transition: color 0.2s; text-decoration: none; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-actions { display: flex; gap: 1rem; align-items: center; }
+  .nav-icon { cursor: pointer; color: var(--muted); font-size: 18px; transition: color 0.2s; text-decoration: none; display: flex; align-items: center; }
+  .nav-icon:hover { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    height: 92vh; min-height: 600px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 2rem;
+    background: linear-gradient(180deg, #0a0a0a 0%, #111 50%, #0a0a0a 100%);
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 40% at 50% 60%, rgba(201,169,110,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-logo-wrap { margin-bottom: 2rem; position: relative; z-index: 1; }
+  .hero-logo-img { height: 120px; width: auto; opacity: 0.95; }
+  .hero-label { font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; position: relative; z-index: 1; }
+  .hero-title { font-size: clamp(2.5rem, 7vw, 5rem); font-weight: 800; letter-spacing: 0.05em; line-height: 1; margin-bottom: 0.5rem; text-transform: uppercase; position: relative; z-index: 1; }
+  .hero-title span { color: var(--gold); }
+  .hero-subtitle { font-size: 11px; letter-spacing: 0.3em; color: var(--muted); text-transform: uppercase; margin-bottom: 2.5rem; position: relative; z-index: 1; }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; position: relative; z-index: 1; }
+  .btn-primary { background: var(--text); color: var(--black); padding: 13px 32px; font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; border: none; cursor: pointer; transition: all 0.2s; }
+  .btn-primary:hover { background: var(--gold); }
+  .btn-outline { background: transparent; color: var(--text); padding: 13px 32px; font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; border: 0.5px solid rgba(255,255,255,0.3); cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-block; }
+  .btn-outline:hover { border-color: var(--text); }
+
+  /* MARQUEE */
+  .marquee-bar { border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); padding: 12px 0; overflow: hidden; background: var(--dark); }
+  .marquee-inner { display: flex; gap: 4rem; white-space: nowrap; animation: marquee 22s linear infinite; }
+  .marquee-item { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+  .marquee-dot { color: var(--gold); }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* SECTION */
+  .section { padding: 5rem 2rem; }
+  .section-header { display: flex; align-items: center; margin-bottom: 2.5rem; gap: 1rem; }
+  .section-title { font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; white-space: nowrap; }
+  .section-line { flex: 1; height: 0.5px; background: var(--border); }
+  .section-count { font-size: 11px; color: var(--muted); letter-spacing: 0.1em; white-space: nowrap; }
+
+  /* CATS */
+  .cats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 1px; background: var(--border); }
+  .cat-item { background: var(--dark); padding: 1.25rem 1rem; cursor: pointer; transition: background 0.2s; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; }
+  .cat-item:hover { background: #1a1a1a; }
+  .cat-item.active { background: #1c1c1c; border-bottom: 2px solid var(--gold); }
+  .cat-icon { font-size: 20px; color: var(--gold); }
+  .cat-name { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text); }
+  .cat-count { font-size: 10px; color: var(--muted); }
+
+  /* PRODUCTS */
+  .products-section { padding: 2rem 2rem 5rem; }
+  .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 1px; background: var(--border); }
+  .product-card { background: var(--dark); cursor: pointer; transition: background 0.2s; position: relative; overflow: hidden; display: none; }
+  .product-card.visible { display: block; }
+  .product-card:hover { background: #161616; }
+  .product-card:hover .product-overlay { opacity: 1; }
+  .product-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; background: #1a1a1a; }
+  .product-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.95)); padding: 1.5rem 1rem 1rem; opacity: 0; transition: opacity 0.25s; display: flex; gap: 8px; }
+  .btn-order { flex: 1; background: var(--gold); color: #000; border: none; padding: 10px 8px; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; }
+  .btn-order:hover { background: #e0bb7a; }
+  .btn-wa { background: #25D366; color: #fff; border: none; padding: 10px 12px; font-size: 16px; cursor: pointer; transition: all 0.2s; }
+  .product-info { padding: 1rem; }
+  .product-cat { font-size: 10px; color: var(--gold); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 4px; }
+  .product-name { font-size: 13px; color: var(--text); margin-bottom: 8px; font-weight: 500; }
+  .product-footer { display: flex; justify-content: space-between; align-items: center; }
+  .product-price { font-size: 16px; font-weight: 700; }
+  .product-sizes { font-size: 10px; color: var(--muted); }
+
+  /* MODAL */
+  .modal-overlay { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.88); backdrop-filter: blur(4px); align-items: center; justify-content: center; padding: 1rem; min-height: 500px; }
+  .modal-overlay.open { display: flex; }
+  .modal { background: #111; border: 0.5px solid var(--border-hover); width: 100%; max-width: 460px; max-height: 88vh; overflow-y: auto; position: relative; }
+  .modal-header { padding: 1.25rem 1.5rem; border-bottom: 0.5px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .modal-header-logo { height: 28px; }
+  .modal-title { font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; }
+  .modal-close { background: none; border: none; color: var(--muted); font-size: 22px; cursor: pointer; line-height: 1; }
+  .modal-close:hover { color: var(--text); }
+  .modal-body { padding: 1.5rem; }
+  .modal-product { display: flex; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 0.5px solid var(--border); }
+  .modal-product-img { width: 80px; height: 100px; object-fit: cover; background: #1a1a1a; }
+  .modal-product-name { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .modal-product-price { font-size: 18px; font-weight: 700; color: var(--gold); }
+  .form-group { margin-bottom: 1rem; }
+  .form-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; display: block; }
+  .form-input { width: 100%; background: #1a1a1a; border: 0.5px solid var(--border); color: var(--text); padding: 10px 12px; font-size: 13px; font-family: inherit; outline: none; transition: border-color 0.2s; }
+  .form-input:focus { border-color: var(--gold); }
+  .form-input::placeholder { color: rgba(255,255,255,0.2); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .size-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; }
+  .size-btn { background: #1a1a1a; border: 0.5px solid var(--border); color: var(--muted); padding: 8px 4px; font-size: 11px; font-weight: 600; cursor: pointer; text-align: center; transition: all 0.15s; }
+  .size-btn:hover { border-color: var(--text); color: var(--text); }
+  .size-btn.selected { background: var(--text); color: var(--black); border-color: var(--text); }
+  .submit-options { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 1.5rem; }
+  .btn-submit-wa { background: #25D366; color: #fff; border: none; padding: 13px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; }
+  .btn-submit-wa:hover { background: #20b958; }
+  .btn-submit-email { background: var(--gold); color: #000; border: none; padding: 13px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; }
+  .btn-submit-email:hover { background: #e0bb7a; }
+  .success-msg { display: none; text-align: center; padding: 2.5rem 1.5rem; }
+  .success-msg.show { display: block; }
+  .success-icon { font-size: 48px; color: var(--gold); margin-bottom: 1rem; }
+  .success-title { font-size: 15px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .success-text { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* FOOTER */
+  footer { border-top: 0.5px solid var(--border); padding: 3rem 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 2rem; }
+  .footer-logo-img { height: 50px; margin-bottom: 0.75rem; display: block; }
+  .footer-brand-name { font-size: 13px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 2px; }
+  .footer-brand-sub { font-size: 9px; letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.75rem; }
+  .footer-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+  .footer-col-title { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1rem; }
+  .footer-link { font-size: 12px; color: var(--muted); cursor: pointer; display: block; margin-bottom: 8px; transition: color 0.2s; text-decoration: none; }
+  .footer-link:hover { color: var(--text); }
+  .footer-social { display: flex; gap: 10px; margin-top: 1rem; }
+  .social-btn { width: 34px; height: 34px; border: 0.5px solid var(--border); display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--muted); font-size: 15px; transition: all 0.2s; text-decoration: none; }
+  .social-btn:hover { border-color: var(--text); color: var(--text); }
+  .footer-bottom { border-top: 0.5px solid var(--border); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+  .footer-copy { font-size: 11px; color: var(--muted); }
+
+  @media (hover: none) {
+    .product-overlay { opacity: 1; }
+    .btn-primary, .btn-outline, .btn-order, .btn-wa, .size-btn, .nav-icon { touch-action: manipulation; }
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 0.75rem 1rem; height: auto; min-height: 64px; flex-wrap: wrap; gap: 0.75rem; }
+    .nav-logo-wrap { flex: 1 1 auto; min-width: 0; }
+    .nav-links { order: 3; width: 100%; justify-content: space-between; gap: 0.75rem; padding-top: 0.25rem; overflow-x: auto; scrollbar-width: none; }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links a { flex: 1; text-align: center; padding: 0.55rem 0.35rem; border: 0.5px solid var(--border); color: rgba(255,255,255,0.7); }
+    .nav-actions { flex: 0 0 auto; gap: 0.75rem; }
+    .hero { min-height: 560px; height: auto; padding: 5rem 1.25rem 4rem; }
+    .hero-logo-img { height: 150px; max-width: 70vw; object-fit: contain; }
+    .hero-title { font-size: clamp(2rem, 10vw, 3.8rem); letter-spacing: 0.03em; overflow-wrap: anywhere; }
+    .hero-subtitle { letter-spacing: 0.2em; margin-bottom: 2rem; }
+    .section { padding: 3.5rem 1rem; }
+    .products-section { padding: 1rem 1rem 4rem; }
+    .products-grid { grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); }
+    footer { padding: 2.5rem 1rem; }
+    .footer-bottom { padding: 1rem; }
+  }
+
+  @media (max-width: 560px) {
+    .site-wrapper { min-width: 0; }
+    nav { position: sticky; top: 0; }
+    .nav-logo-img { height: 42px; }
+    .nav-logo-text { font-size: 12px; letter-spacing: 0.16em; }
+    .nav-logo-sub { font-size: 8px; letter-spacing: 0.18em; }
+    .nav-links a { font-size: 10px; letter-spacing: 0.08em; white-space: nowrap; }
+    .nav-icon { width: 36px; height: 36px; justify-content: center; border: 0.5px solid var(--border); }
+
+    .hero { min-height: calc(100svh - 110px); padding: 4rem 1rem 3rem; }
+    .hero-logo-wrap { margin-bottom: 1.5rem; }
+    .hero-logo-img { height: 135px; max-width: 78vw; }
+    .hero-label { font-size: 10px; letter-spacing: 0.18em; }
+    .hero-title { font-size: clamp(1.85rem, 9.2vw, 2.6rem); line-height: 1.05; }
+    .hero-subtitle { font-size: 10px; letter-spacing: 0.16em; line-height: 1.6; }
+    .hero-cta { width: 100%; gap: 0.75rem; }
+    .btn-primary, .btn-outline { width: 100%; max-width: 340px; padding: 14px 18px; font-size: 10px; letter-spacing: 0.1em; text-align: center; }
+
+    .marquee-inner { gap: 2rem; animation-duration: 18s; }
+    .section-header { align-items: flex-start; margin-bottom: 1.5rem; gap: 0.75rem; }
+    .section-title { font-size: 11px; letter-spacing: 0.16em; }
+    .section-count { font-size: 10px; }
+    .cats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .cat-item { min-height: 84px; padding: 1rem 0.5rem; }
+    .cat-name { font-size: 9px; letter-spacing: 0.08em; overflow-wrap: anywhere; }
+
+    .products-grid { grid-template-columns: 1fr; }
+    .product-overlay { opacity: 1; padding: 3rem 0.75rem 0.75rem; }
+    .btn-order { padding: 12px 8px; font-size: 10px; }
+    .btn-wa { min-width: 44px; min-height: 44px; }
+    .product-info { padding: 0.9rem; }
+    .product-name { line-height: 1.4; }
+    .product-footer { align-items: flex-start; gap: 0.5rem; flex-direction: column; }
+    .product-sizes { line-height: 1.4; }
+
+    .modal-overlay { align-items: flex-end; padding: 0; min-height: 100dvh; }
+    .modal { max-width: none; max-height: 94dvh; border-left: 0; border-right: 0; border-bottom: 0; }
+    .modal-header { padding: 1rem; gap: 0.75rem; position: sticky; top: 0; background: #111; z-index: 1; }
+    .modal-header-logo { height: 34px; }
+    .modal-title { font-size: 10px; letter-spacing: 0.1em; flex: 1; }
+    .modal-close { width: 40px; height: 40px; font-size: 24px; }
+    .modal-body { padding: 1rem; }
+    .modal-product { gap: 0.75rem; margin-bottom: 1rem; padding-bottom: 1rem; }
+    .modal-product-img { width: 72px; height: 96px; flex: 0 0 auto; }
+    .modal-product-name { font-size: 13px; line-height: 1.35; }
+    .form-row { grid-template-columns: 1fr; gap: 0; }
+    .form-input { min-height: 44px; font-size: 16px; }
+    .size-grid { grid-template-columns: repeat(4, 1fr); }
+    .size-btn { min-height: 42px; font-size: 12px; }
+    .submit-options { grid-template-columns: 1fr; }
+    .btn-submit-wa, .btn-submit-email { min-height: 46px; }
+    .success-msg { padding: 2rem 1rem; }
+
+    footer { grid-template-columns: 1fr; gap: 1.75rem; }
+    .footer-logo-img { height: 64px; }
+    .footer-link { overflow-wrap: anywhere; line-height: 1.5; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; }
+    .footer-copy { line-height: 1.5; }
+  }
+
+  @media (max-width: 360px) {
+    .nav-links { gap: 0.5rem; }
+    .nav-links a { font-size: 9px; padding: 0.5rem 0.25rem; }
+    .hero-title { font-size: 1.75rem; }
+    .cats-grid { grid-template-columns: 1fr 1fr; }
+    .section-line { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="site-wrapper">
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo-wrap">
+      <img class="nav-logo-img" src="assets/twins-store-logo.png" alt="TWINS logo" />
+      <div>
+        <div class="nav-logo-text">TWINS</div>
+        <div class="nav-logo-sub">Clothing Store</div>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a onclick="scrollTo2('categories')">Collections</a>
+      <a onclick="scrollTo2('products')">Produits</a>
+      <a onclick="scrollTo2('contact')">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <a href="https://www.instagram.com/twins.store.clothing" target="_blank" class="nav-icon"><i class="ti ti-brand-instagram"></i></a>
+      <a href="https://wa.me/212777498919" target="_blank" class="nav-icon" style="color:#25D366;"><i class="ti ti-brand-whatsapp"></i></a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-logo-wrap">
+      <img class="hero-logo-img" src="assets/twins-store-logo.png" alt="TWINS Clothing Store" />
+    </div>
+    <p class="hero-label">Nouvelle Collection 2025</p>
+    <h1 class="hero-title">TWINS<span style="color:var(--gold)">.</span>CLOTHING</h1>
+    <p class="hero-subtitle">Style · Qualité · Élégance</p>
+    <div class="hero-cta">
+      <button class="btn-primary" onclick="scrollTo2('products')">Découvrir la collection</button>
+      <a href="https://wa.me/212777498919" target="_blank" class="btn-outline">Commander via WhatsApp</a>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-bar">
+    <div class="marquee-inner" id="marqueeInner"></div>
+  </div>
+
+  <!-- CATEGORIES -->
+  <section class="section" id="categories">
+    <div class="section-header">
+      <span class="section-title">Collections</span>
+      <span class="section-line"></span>
+      <span class="section-count">14 catégories</span>
+    </div>
+    <div class="cats-grid" id="catsGrid"></div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="products-section" id="products">
+    <div class="section-header">
+      <span class="section-title" id="productsTitle">Tous les produits</span>
+      <span class="section-line"></span>
+      <span class="section-count" id="productsCount">28 articles</span>
+    </div>
+    <div class="products-grid" id="productsGrid"></div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div>
+      <img class="footer-logo-img" src="assets/twins-store-logo.png" alt="TWINS logo" />
+      <div class="footer-brand-name">TWINS</div>
+      <div class="footer-brand-sub">Clothing Store</div>
+      <p class="footer-desc">Mode masculine premium.<br>Qualité et style au meilleur prix.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/twins.store.clothing" target="_blank" class="social-btn"><i class="ti ti-brand-instagram"></i></a>
+        <a href="https://wa.me/212777498919" target="_blank" class="social-btn"><i class="ti ti-brand-whatsapp"></i></a>
+        <a href="mailto:stwinsclothing@gmail.com" class="social-btn"><i class="ti ti-mail"></i></a>
+      </div>
+    </div>
+    <div>
+      <p class="footer-col-title">Commander</p>
+      <a href="https://wa.me/212777498919" target="_blank" class="footer-link"><i class="ti ti-brand-whatsapp" style="color:#25D366;"></i> WhatsApp: 0777 498 919</a>
+      <a href="mailto:stwinsclothing@gmail.com" class="footer-link"><i class="ti ti-mail"></i> stwinsclothing@gmail.com</a>
+      <a href="https://www.instagram.com/twins.store.clothing" target="_blank" class="footer-link"><i class="ti ti-brand-instagram"></i> @twins.store.clothing</a>
+    </div>
+    <div>
+      <p class="footer-col-title">Informations</p>
+      <span class="footer-link">Livraison partout au Maroc</span>
+      <span class="footer-link">Paiement à la livraison</span>
+      <span class="footer-link">Retours sous 7 jours</span>
+      <span class="footer-link">Service client 7j/7</span>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 TWINS.CLOTHING.STORE — Tous droits réservés</span>
+    <span class="footer-copy">Maroc 🇲🇦</span>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="orderModal">
+  <div class="modal">
+    <div class="modal-header">
+      <img class="modal-header-logo" src="assets/twins-store-logo.png" alt="TWINS" />
+      <span class="modal-title">Passer commande</span>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body" id="modalBody">
+      <div class="modal-product" id="modalProduct"></div>
+      <div class="form-group">
+        <label class="form-label">Choisir une taille</label>
+        <div class="size-grid" id="sizeGrid"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Prénom</label><input class="form-input" id="fname" placeholder="Votre prénom" /></div>
+        <div class="form-group"><label class="form-label">Nom</label><input class="form-input" id="lname" placeholder="Votre nom" /></div>
+      </div>
+      <div class="form-group"><label class="form-label">Téléphone</label><input class="form-input" id="phone" placeholder="06 xx xx xx xx" /></div>
+      <div class="form-group"><label class="form-label">Ville</label><input class="form-input" id="city" placeholder="Votre ville" /></div>
+      <div class="form-group"><label class="form-label">Adresse</label><input class="form-input" id="address" placeholder="Rue, quartier..." /></div>
+      <div class="submit-options">
+        <button class="btn-submit-wa" onclick="submitOrder('whatsapp')"><i class="ti ti-brand-whatsapp"></i> WhatsApp</button>
+        <button class="btn-submit-email" onclick="submitOrder('email')"><i class="ti ti-mail"></i> Email</button>
+      </div>
+    </div>
+    <div class="success-msg" id="successMsg">
+      <div class="success-icon"><i class="ti ti-circle-check"></i></div>
+      <p class="success-title">Commande envoyée!</p>
+      <p class="success-text">Merci pour votre commande.<br>Notre équipe vous contactera très bientôt.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+const CATS = [
+  {id:'all',name:'Tout',icon:'ti-layout-grid',count:28},
+  {id:'tshirt',name:'T-shirts',icon:'ti-shirt',count:2},{id:'hoodie',name:'Hoodies',icon:'ti-shirt',count:2},
+  {id:'pantalon',name:'Pantalons',icon:'ti-stack',count:2},{id:'jean',name:'Jeans',icon:'ti-stack',count:2},
+  {id:'short',name:'Shorts',icon:'ti-stack-2',count:2},{id:'polo',name:'Polos',icon:'ti-shirt',count:2},
+  {id:'sweat',name:'Sweats',icon:'ti-shirt',count:2},{id:'survet',name:'Survêtements',icon:'ti-layers',count:2},
+  {id:'veste',name:'Vestes',icon:'ti-jacket',count:2},{id:'sandale',name:'Sandales',icon:'ti-shoe',count:2},
+  {id:'chaussure',name:'Chaussures',icon:'ti-shoe',count:2},{id:'accessoire',name:'Accessoires',icon:'ti-sunglasses',count:2},
+  {id:'portefeuille',name:'Portefeuilles',icon:'ti-wallet',count:2},{id:'sac',name:'Sacs à dos',icon:'ti-backpack',count:2},
+];
+const PRODS = [
+  {id:1,cat:'tshirt',name:'T-shirt Artistic Department',price:199,img:'assets/t-shirt-site.webp',sizes:['XS','S','M','L','XL']},
+  {id:2,cat:'tshirt',name:'T-shirt Brooklyn Art Gallery',price:199,img:'assets/t-shirt-site-2.webp',sizes:['XS','S','M','L','XL']},
+  {id:3,cat:'hoodie',name:'Hoodie Authentic Gallery',price:249,img:'assets/hoodies-site-1.webp',sizes:['S','M','L','XL','XXL']},
+  {id:4,cat:'hoodie',name:'Hoodie Authentic Gallery (dos)',price:249,img:'assets/hoodies-site-2.webp',sizes:['S','M','L','XL','XXL']},
+  {id:5,cat:'pantalon',name:'Pantalon Jogging Wide',price:249,img:'assets/pantalon-site-1.webp',sizes:['S','M','L','XL','XXL']},
+  {id:6,cat:'pantalon',name:'Pantalon Jogging Wide (dos)',price:249,img:'assets/pantalon-site-2.webp',sizes:['S','M','L','XL','XXL']},
+  {id:7,cat:'polo',name:'Polo Piqué Oversize Blanc',price:179,img:'assets/polo-site-1.webp',sizes:['XS','S','M','L','XL']},
+  {id:8,cat:'polo',name:'Polo Piqué Oversize (dos)',price:179,img:'assets/polo-site-2.webp',sizes:['XS','S','M','L','XL']},
+  {id:9,cat:'jean',name:'Jean Wide Leg Bleu Clair',price:199,img:'assets/jean-site-1.webp',sizes:['28','30','32','34','36']},
+  {id:10,cat:'jean',name:'Jean Wide Leg (dos)',price:199,img:'assets/jean-site-2.webp',sizes:['28','30','32','34','36']},
+  {id:11,cat:'short',name:'Short Molleton Gris Chiné',price:199,img:'assets/short-site-1.webp',sizes:['S','M','L','XL','XXL']},
+  {id:12,cat:'short',name:'Short Molleton (détail poche)',price:199,img:'assets/short-site-2.webp',sizes:['S','M','L','XL','XXL']},
+  {id:13,cat:'sweat',name:'Sweat Los Angeles Bordeaux',price:249,img:'assets/sweat-site-1.webp',sizes:['S','M','L','XL','XXL']},
+  {id:14,cat:'sweat',name:'Sweat Alternative Culture Club',price:249,img:'assets/sweat-site.webp',sizes:['S','M','L','XL','XXL']},
+  {id:15,cat:'survet',name:'Survêtement Gris Chiné Zip',price:449,img:'assets/survetement-site-1.webp',sizes:['S','M','L','XL','XXL']},
+  {id:16,cat:'survet',name:'Survêtement Gris Chiné (dos)',price:449,img:'assets/survetement-site-2.webp',sizes:['S','M','L','XL','XXL']},
+  {id:17,cat:'veste',name:'Veste Bomber Cuir Noir',price:299,img:'assets/veste-site-1.webp',sizes:['S','M','L','XL','XXL']},
+  {id:18,cat:'veste',name:'Veste Bomber Cuir Noir (dos)',price:299,img:'assets/veste-site-2.webp',sizes:['S','M','L','XL','XXL']},
+  {id:19,cat:'sandale',name:'Sandale Double Boucle Grise',price:249,img:'assets/sandale-site-1.webp',sizes:['39','40','41','42','43','44']},
+  {id:20,cat:'sandale',name:'Sandale Double Boucle (vue)',price:249,img:'assets/sandale-site-2.webp',sizes:['39','40','41','42','43','44']},
+  {id:21,cat:'chaussure',name:'Sneakers Running Blanc/Vert',price:349,img:'assets/chaussures-site-1.webp',sizes:['39','40','41','42','43','44','45']},
+  {id:22,cat:'chaussure',name:'Sneakers Running (paire)',price:349,img:'assets/chaussures-site-2.webp',sizes:['39','40','41','42','43','44','45']},
+  {id:23,cat:'accessoire',name:'Lunettes Écaille Ronde',price:149,img:'assets/accessoires-sie-2.webp',sizes:['Unique']},
+  {id:24,cat:'accessoire',name:'Lunettes Écaille (face)',price:149,img:'assets/accessoires-site-1.webp',sizes:['Unique']},
+  {id:25,cat:'portefeuille',name:'Portefeuille Toile Kaki',price:119,img:'assets/portefeuille-site-1.webp',sizes:['Unique']},
+  {id:26,cat:'portefeuille',name:'Portefeuille Toile Kaki (ouvert)',price:119,img:'assets/portefeuille-site-2.webp',sizes:['Unique']},
+  {id:27,cat:'sac',name:'Sac à dos Cuir Noir',price:349,img:'assets/sac-a-dos-site-1.webp',sizes:['Unique']},
+  {id:28,cat:'sac',name:'Sac à dos Cuir Noir (côté)',price:349,img:'assets/sac-a-dos-site-2.webp',sizes:['Unique']},
+];
+const CATMAP = {tshirt:'T-shirt',hoodie:'Hoodie',pantalon:'Pantalon',jean:'Jean',short:'Short',polo:'Polo',sweat:'Sweat',survet:'Survêtement',veste:'Veste',sandale:'Sandale',chaussure:'Chaussure',accessoire:'Accessoire',portefeuille:'Portefeuille',sac:'Sac à dos'};
+
+let currentProduct = null, selectedSize = null;
+
+function scrollTo2(id){ document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
+
+function buildMarquee(){
+  const items=['T-shirts','Hoodies','Jeans','Pantalons','Shorts','Polos','Sweats','Vestes','Survêtements','Sandales','Chaussures','Accessoires','Livraison Maroc'];
+  let h=''; for(let i=0;i<2;i++) items.forEach(it=>{ h+=`<span class="marquee-item">${it} <span class="marquee-dot">✦</span></span>`; });
+  document.getElementById('marqueeInner').innerHTML=h;
+}
+
+function buildCats(){
+  document.getElementById('catsGrid').innerHTML = CATS.map(c=>`
+    <div class="cat-item ${c.id==='all'?'active':''}" onclick="filterCat('${c.id}',this)">
+      <i class="ti ${c.icon} cat-icon" aria-hidden="true"></i>
+      <span class="cat-name">${c.name}</span>
+      <span class="cat-count">${c.id==='all'?PRODS.length:c.count} articles</span>
+    </div>`).join('');
+}
+
+function filterCat(id, el){
+  document.querySelectorAll('.cat-item').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  const filtered = id==='all'?PRODS:PRODS.filter(p=>p.cat===id);
+  document.getElementById('productsTitle').textContent = CATS.find(c=>c.id===id)?.name||'Tous les produits';
+  document.getElementById('productsCount').textContent = filtered.length+' articles';
+  document.querySelectorAll('.product-card').forEach(card=>{
+    const p=PRODS.find(x=>x.id===parseInt(card.dataset.id));
+    card.classList.toggle('visible', id==='all'||p.cat===id);
+  });
+  scrollTo2('products');
+}
+
+function buildProducts(){
+  document.getElementById('productsGrid').innerHTML = PRODS.map(p=>`
+    <div class="product-card visible" data-id="${p.id}">
+      <img class="product-img" src="${p.img}" alt="${p.name}" loading="lazy" />
+      <div class="product-overlay">
+        <button class="btn-order" onclick="openOrder(${p.id})">Commander</button>
+        <button class="btn-wa" onclick="orderWA(${p.id})"><i class="ti ti-brand-whatsapp"></i></button>
+      </div>
+      <div class="product-info">
+        <p class="product-cat">${CATMAP[p.cat]||p.cat}</p>
+        <p class="product-name">${p.name}</p>
+        <div class="product-footer">
+          <span class="product-price">${p.price} DH</span>
+          <span class="product-sizes">${p.sizes.join(' · ')}</span>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function openOrder(id){
+  currentProduct=PRODS.find(p=>p.id===id); selectedSize=null;
+  document.getElementById('modalProduct').innerHTML=`
+    <img class="modal-product-img" src="${currentProduct.img}" alt="${currentProduct.name}" />
+    <div style="flex:1;">
+      <p style="font-size:10px;color:var(--gold);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:4px;">${CATMAP[currentProduct.cat]}</p>
+      <p class="modal-product-name">${currentProduct.name}</p>
+      <p class="modal-product-price">${currentProduct.price} DH</p>
+    </div>`;
+  document.getElementById('sizeGrid').innerHTML=currentProduct.sizes.map(s=>`<button class="size-btn" onclick="selectSize(this,'${s}')">${s}</button>`).join('');
+  ['fname','lname','phone','city','address'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('modalBody').style.display='block';
+  document.getElementById('successMsg').classList.remove('show');
+  document.getElementById('orderModal').classList.add('open');
+}
+
+function selectSize(btn,size){
+  selectedSize=size;
+  document.querySelectorAll('.size-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+
+function closeModal(){ document.getElementById('orderModal').classList.remove('open'); }
+
+function orderWA(id){
+  const p=PRODS.find(x=>x.id===id);
+  window.open('https://wa.me/212777498919?text='+encodeURIComponent(`Bonjour TWINS Clothing 👋\n\nJe souhaite commander :\n🛍️ *${p.name}*\n💰 Prix: ${p.price} DH\n\nMerci!`),'_blank');
+}
+
+function submitOrder(method){
+  if(!selectedSize){alert('Veuillez choisir une taille');return;}
+  const fname=document.getElementById('fname').value.trim();
+  const phone=document.getElementById('phone').value.trim();
+  const city=document.getElementById('city').value.trim();
+  const lname=document.getElementById('lname').value.trim();
+  const address=document.getElementById('address').value.trim();
+  if(!fname||!phone||!city){alert('Veuillez remplir les champs obligatoires');return;}
+  const p=currentProduct;
+  const msg=`Bonjour TWINS Clothing! 👋\n\n📦 NOUVELLE COMMANDE\n\n🛍️ Produit: ${p.name}\n📏 Taille: ${selectedSize}\n💰 Prix: ${p.price} DH\n\n👤 Client: ${fname} ${lname}\n📱 Téléphone: ${phone}\n🏙️ Ville: ${city}\n📍 Adresse: ${address}\n\nMerci!`;
+  if(method==='whatsapp') window.open('https://wa.me/212777498919?text='+encodeURIComponent(msg),'_blank');
+  else window.open('mailto:stwinsclothing@gmail.com?subject=Commande - '+encodeURIComponent(p.name)+'&body='+encodeURIComponent(msg),'_blank');
+  document.getElementById('modalBody').style.display='none';
+  document.getElementById('successMsg').classList.add('show');
+  setTimeout(closeModal,3000);
+}
+
+document.getElementById('orderModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+buildMarquee(); buildCats(); buildProducts();
+</script>
+
+</body>
+</html>
